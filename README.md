@@ -1,8 +1,6 @@
 # Using-Machine-Learning-to-Predict-Successful-Football-Transfers
 Repository for Robbie O' Sullivan's Final Year Project with the UCC School of Computer Science.
 
-INTRODUCTION
-
 With the price of running a professional football team skyrocketing – teams are on the constant hunt to lessen their risk when it comes to spending large amounts of money on statement signings. In this project, I will build and train a Machine Learning model on previous transfer data to predict which players would have the highest likelihood to succeed at their new clubs, and potentially save football teams millions of euros.
 
 The role of data is consistently rising in all aspects of professional sport and as such, football has increasingly become data-driven. Predictive models leverage vast amounts of historical and real-time data to make informed decisions to give clubs competitive advantage in the market, and will lead to direct results on the pitch. Each and every professional club has a team of data analysts – tasked to improve the decision making process. The difference in quality of analysis shown in the market is staggering, with some clubs consistently recruiting very effectively, while others waste massive budgets on poorly informed decisions.
