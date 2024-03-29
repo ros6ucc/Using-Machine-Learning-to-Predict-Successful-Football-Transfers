@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Player Suggestions</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+    <div class="container">
+        <a class="search-button" href="{{ url_for('suggest_players') }}">
+            <img src="{{ url_for('static', filename='search.png') }}" alt="Home" />
+        </a>
+        <h2>Player Suggestions</h2>
+        <ul class="suggestions-list">
+            {% for suggestion in suggestions %}
+                <li class="suggestion-item">
+                    <img src="{{ suggestion.image_url }}" alt="{{ suggestion.player }}'s Image" class="player-image-listed">
+                    <div class="player-info">
+                        <h3 class="player-name">{{ suggestion.player }}</h3>
+                    <div class="player-metrics">
+                        <span class="success-score">Success Score: <strong>{{ suggestion.success_score }}%</strong></span>
+                        <span class="player-details">{{ suggestion.details }}</span>
+                        <span class="player-stats"><strong>{{ suggestion.metrics }}</strong></span>
+                    </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

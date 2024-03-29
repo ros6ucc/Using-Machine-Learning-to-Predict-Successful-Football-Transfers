@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About the Prediction System</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="about-container">
+        <a class="home-button" href="/">
+            <img src="{{ url_for('static', filename='home.png') }}" alt="Home" />
+        </a>
+        <a class="search-button" href="{{ url_for('suggest_players') }}">
+            <img src="{{ url_for('static', filename='search.png') }}" alt="Home" />
+        </a>
+        <h1>About the European Transfer Prediction System</h1>
+
+        <h2>How 'Success Score' is Calculated:</h2>
+        <p>
+            The success score is a metric that combines a player's predicted minutes of play at their new club, a prediction of their future transfer value, and age to evaluate the potential success of a transfer. It ranges from 0 to 100, where a higher score indicates a more favourable outcome.
+        </p>
+
+        <h2>Understanding the Colour Coding:</h2>
+        <p>
+            The colour coding on the prediction results page provides a visual cue to quickly assess various metrics:
+        </p>
+        <ul>
+            <li class="value-fallen"><strong>Red</strong> → Metrics marked Red indicate that the metric has a negetive impact on the success score.</li>
+            <li class="value-risen"><strong>Green</strong> → Metrics marked Green indicate that the metric has a negetive impact on the success score.</li>
+        </ul>
+
+        <h2>Calculating Transfer Value and Minutes Percentage:</h2>
+        <p>
+            The transfer value is estimated based on the player's current performance, age, and market trends. The predicted minutes of play percentage is calculated considering the player's past playing time, the selected team's playing style, and the potential for future involvement.
+        </p>
+
+        <h2>About Player Age and Club Details:</h2>
+        <p>
+            A player's age is a crucial factor in assessing their potential and market value. Younger players may have a higher potential for development, but further margin for unexpected problems in their career. Experienced players bring their prowess to the game, but are not long term investments. 
+        </p>
+
+        <div class="qr-container">
+            <h2>Full Project Github:</h2>
+            <img src="static/frame.png" alt="QR Code" class="qr-code">
+            <a href="/" class="back-link">Back to Home</a>
+        </div>
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Player Suggestion Form</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <a class="home-button" href="/">
+            <img src="{{ url_for('static', filename='home.png') }}" alt="Home" />
+        </a>
+        <h2>Find Players for Your Club</h2>
+        <form action="{{ url_for('suggest_players' )}}" method="post">
+            <div class="form-group">
+                <label for="club">Club:</label>
+                <input type="text" id="club" name="club" required>
+            </div>
+            <div class="form-group-row">
+            <div class="form-group">
+                <label for="sub_position">Position:</label>
+                <select id="sub_position" name="sub_position" required>
+                    <option value="Centre-Back">Centre-Back</option>
+                    <option value="Centre-Forward">Centre-Forward</option>
+                    <option value="Left-Back">Left-Back</option>
+                    <option value="Right-Back">Right-Back</option>
+                    <option value="Right Winger">Right Winger</option>
+                    <option value="Central Midfield">Central Midfield</option>
+                    <option value="Goalkeeper">Goalkeeper</option>
+                    <option value="Attacking Midfield">Attacking Midfield</option>
+                    <option value="Right Midfield">Right Midfield</option>
+                    <option value="Left Winger">Left Winger</option>
+                    <option value="Defensive Midfield">Defensive Midfield</option>
+                    <option value="Left Midfield">Left Midfield</option>
+                    <option value="Second Striker">Second Striker</option>
+                    <option value="midfield">Midfield</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="budget">Budget (€ Million):</label>
+                <select id="budget" name="budget" required>
+                    <option value="No Limit">No Budget Limit</option>
+                    <option value="15000000">€15 Million</option>
+                    <option value="30000000">€30 Million</option>
+                    <option value="45000000">€45 Million</option>
+                    <option value="60000000">€60 Million</option>
+                    <option value="75000000">€75 Million</option>
+                    <option value="90000000">€90 Million</option>
+                </select>
+            </div>
+            </div>
+            <button type="submit" class="submit-btn">Get Suggestions</button>
+        </form>
+    
+    </div>
+    <script>
+        $(document).ready(function() {
+            // Club suggestions
+            $("#club").autocomplete({
+                source: function(request, response) {
+                    $.ajax({
+                        url: "/suggest_club/" + request.term,
+                        dataType: "json",
+                        success: function(data) {
+                            response(data.suggestions);
+                        }
+                    });
+                },
+                minLength: 2
+            });
+        });
+        </script>
+</body>
+</html>
