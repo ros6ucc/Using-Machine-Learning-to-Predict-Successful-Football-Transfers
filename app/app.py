@@ -373,9 +373,16 @@ def get_player_suggestions(club, sub_position, budget):
         player_age = player_row['age']
         current_club = player_row['club_name']
 
+
         # Prepare data for prediction
         X_player = player_row[features].values.reshape(1, -1)
         X_player_scaled = scaler.transform(X_player)
+
+        club_league = club_df['domestic_competition_id'].iloc[0]
+        current_league = player_row['domestic_competition_id']
+        league_weight = 0
+        if club_league == current_league:
+            league_weight = 10
 
         # Predict minutes percentage and transfer value
         player_predicted_minutes_percentage = minModel.predict(X_player_scaled)[0]
@@ -385,7 +392,7 @@ def get_player_suggestions(club, sub_position, budget):
             print("Infinity detected in predictions")
         player_predicted_value_rounded = np.round(player_predicted_value / 1_000_000) * 1_000_000
         value_at_transfer = player_row['previous_value']
-        success_score = calculate_success_score(player_predicted_value_rounded, value_at_transfer, player_predicted_minutes_percentage, player_age)
+        success_score = calculate_success_score(player_predicted_value_rounded, value_at_transfer, player_predicted_minutes_percentage, player_age, league_weight)
 
         player_predicted_minutes_percentage = min(player_predicted_minutes_percentage, 1.0)
         formatted_minutes_percentage = "{:.0f}%".format(player_predicted_minutes_percentage * 100)
