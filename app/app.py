@@ -51,6 +51,7 @@ def predict():
             <html>
             <head>
                 <title>Prediction Results</title>
+                <link rel="icon" href="static/icon.png" type="image/x-icon">
                 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"> 
                 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -193,6 +194,7 @@ def predict():
             <html>
         <head>
             <title>Prediction Input Form</title>
+            <link rel="icon" href="static/icon.png" type="image/x-icon">
             <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -304,7 +306,7 @@ def prediction_function(player, club):
     formatted_previous_value = "€{:.0f} Million".format(value_at_transfer / 1_000_000)
     
     # Prepare results string using the formatted values
-    prediction_results = f"{player} -> {club} = Success Score:"
+    prediction_results = f"{player} → {club} = Success Score:"
     metrics = f"Predicted Minutes Percentage: {formatted_minutes_percentage}\nPredicted Transfer Value: {formatted_transfer_value}\nCurrent Transfer Value: {formatted_previous_value}"
     return prediction_results, metrics, image_url, success_score, formatted_minutes_percentage, predicted_minutes_color, formatted_transfer_value, formatted_previous_value, value_at_transfer, player_predicted_value_rounded, player_age, current_club, league_weight
 
