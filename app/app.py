@@ -175,7 +175,7 @@ def predict():
                 document.getElementById('age').classList.add(ageChangeClass);
                                       
                 var clubChangeClass = "";
-                if (league_weight == 10) {
+                if (league_weight == 5) {
                     clubChangeClass = "value-risen";
                 } else {
                     clubChangeClass = "value-fallen";
@@ -266,7 +266,7 @@ def prediction_function(player, club):
     current_league = player_data['domestic_competition_id'].iloc[0]
     league_weight = 0
     if club_league == current_league:
-        league_weight = 10
+        league_weight = 5
     
     # Update 'MP' for the player
     player_data['MP'] = average_MP_for_club
@@ -312,8 +312,8 @@ def prediction_function(player, club):
 
 def calculate_success_score(predicted_value, value_at_transfer, predicted_minutes_percentage, player_age, league_weight):
     # Assuming 'weight_minutes' and 'weight_value' are defined
-    weight_minutes = 0.45
-    weight_value = 0.45
+    weight_minutes = 0.475
+    weight_value = 0.475
 
     # Adjust weight_minutes based on player's age
     if player_age > 32 or player_age <= 20:
