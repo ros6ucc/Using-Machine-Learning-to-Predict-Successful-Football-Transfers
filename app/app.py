@@ -35,10 +35,7 @@ def predict():
                     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>                     
                 </head>
                 <div class="main-container">
-                    <h2>Prediction Results</h2>
-                    <div class="results">
                         <p>{{ prediction_results }}</p>
-                    </div>
                     <a href="/" class="back-link">Try Again?</a>
                 </div>
                 </html>
@@ -208,11 +205,11 @@ def predict():
             <form method="post" class="prediction-form">
                 <div class="form-group">
                     <label for="player">Player:</label>
-                    <input type="text" id="player" name="player">
+                    <input type="text" id="player" name="player" required>
                 </div>
                 <div class="form-group">
                     <label for="club">Club:</label>
-                    <input type="text" id="club" name="club">
+                    <input type="text" id="club" name="club" required>
                 </div>
                 <button type="submit" class="submit-btn1">Get Prediction</button>
             </form>
@@ -251,9 +248,11 @@ def prediction_function(player, club):
     player_data = stat[(stat['name'] == player) & (stat['season'] == 2022)]
     club_df = club_data[club_data['club_name'] == club]
     
-    # Check if data exists
-    if player_data.empty or club_df.empty:
-        return "Player or Club data not found."
+    if player not in stat['name'].values:
+        return f"Player does not exist.", None, None, None, None, None, None, None, None, None, None, None, None
+    
+    if club not in club_data['club_name'].values:
+        return f"Club does not exist.", None, None, None, None, None, None, None, None, None, None, None, None
     
     # Assuming 'features' list is defined somewhere with the correct feature names
     features = ['age', 'avg_minutes_percentage', 'minutes_played', 'MP', 'games', 'goals_against', 'goals', 'goals_for','assists','clean_sheet','highest_market_value_in_eur','previous_value']  # Replace with actual feature names
@@ -351,6 +350,25 @@ def suggest_players():
             budget = float('inf')
         else:
             budget = float(budget) 
+
+        # Check if the club exists
+        if club not in club_data['club_name'].values:
+            return render_template_string("""
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Club Not Found</title>
+                    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                </head>
+                <body>
+                    <div class="main-container">
+                        <p>Club '{{ club }}' not found. Please try another club.</p>
+                        <a href="/suggest_players" class="back-link">Back</a>
+                    </div>
+                </body>
+                </html>
+            """, club=club)
 
         # Call a function to get top player suggestions
         suggestions = get_player_suggestions(club, sub_position, budget)
