@@ -3,6 +3,8 @@ Repository for Robbie O' Sullivan's Final Year Project with the UCC School of Co
 
 To run, download the 'app' folder and run 'app.py'
 
+## Ensure all modules imported are installed on the local machine. ##
+
 Link to the Academic Paper: https://www.overleaf.com/read/kmjjnkcxdcgh#05ebcf
 
 With the price of running a professional football team skyrocketing – teams are on the constant hunt to lessen their risk when it comes to spending large amounts of money on statement signings. In this project, I will build and train a Machine Learning model on previous transfer data to predict which players would have the highest likelihood to succeed at their new clubs, and potentially save football teams millions of euros.
